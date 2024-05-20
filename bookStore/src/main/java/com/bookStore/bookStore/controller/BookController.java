@@ -2,20 +2,15 @@ package com.bookStore.bookStore.controller;
 
 import com.bookStore.bookStore.entity.Book;
 import com.bookStore.bookStore.entity.BookDto;
+import com.bookStore.bookStore.entity.MyBookList;
 import com.bookStore.bookStore.service.BookService;
+import com.bookStore.bookStore.service.MyBookListService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 
-import java.io.InputStream;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.StandardCopyOption;
-import java.util.Date;
+import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 
 
@@ -25,6 +20,9 @@ public class BookController {
 
     @Autowired
     private BookService bookService;
+
+    @Autowired
+    private MyBookListService myBookListService;
 
     //*****************home********************
     @GetMapping("/")
@@ -131,6 +129,27 @@ public class BookController {
         bookService.deleteBook(id);
         return "redirect:/getAllBooks";
     }
+
+
+    //**************add book to my book list ****************************
+    @GetMapping("AddToMyBooks")  //render the mylist page
+    public String  addToMyBooks(Model model){
+        List<MyBookList> list =myBookListService.getAllBooks();
+        model.addAttribute("books",list);
+        return "myAddedBooks";
+    }
+
+    @RequestMapping("/mylist/{id}")
+    public String getMyList(@PathVariable("id") int id){
+        Book b=bookService.getBookById(id);
+        MyBookList mb = new MyBookList(b.getId(),b.getName(),b.getAuthor(),b.getPrice());
+        myBookListService.saveMyBooks(mb);
+        return "redirect:/AddToMyBooks" ;
+    }
+
+
+
+
 
 }
 
