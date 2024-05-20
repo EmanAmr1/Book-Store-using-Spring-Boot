@@ -52,7 +52,7 @@
             <td th:text="${book.name}"></td>
             <td th:text="${book.author}"></td>
             <td th:text="${book.price}"></td>
-            <td><a th:href="@{/books/{id}(id=${book.id})}" class="btn btn-primary">View</a></td>
+            <td><a th:href="@{/bookDetails/{id}(id=${book.id})}" class="btn btn-primary">View</a></td>
         </tr>
         </tbody>
     </table>

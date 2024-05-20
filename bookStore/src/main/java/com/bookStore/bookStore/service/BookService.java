@@ -22,4 +22,7 @@ public class BookService {
         return  brepo.findAll();
     }
 
+    public Book getBookById(int id){
+        return brepo.findById(id).get();
+    }
 }
