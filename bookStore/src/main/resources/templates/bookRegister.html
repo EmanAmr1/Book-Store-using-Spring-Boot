@@ -31,17 +31,34 @@
             </li>
 
         </ul>
-<div>
-    <a class="nav-link text-white" href="book_register">New Book Register</a>
-</div>
+        <div>
+            <a class="nav-link text-white" href="book_register">New Book Register</a>
+        </div>
     </div>
 </nav>
 
-<div class="container text-center my-5" >
-    <h1>WELCOME TO NEW BOOK STORE</h1>
-    <h6>Welcome to Book Store, your haven for literary adventure and discovery! Nestled in the heart of [City/Area Name], our bookstore is a treasure trove for book lovers of all ages. Whether you’re seeking the latest bestsellers, timeless classics, or unique finds from independent authors, our carefully curated selection promises to inspire and delight. Our cozy reading nooks invite you to lose yourself in a world of words, while our knowledgeable staff is always on hand to offer personalized recommendations. Join us for author events, book clubs, and special promotions that celebrate the joy of reading. At [Your Bookstore Name], every visit is a new chapter waiting to be written.</h6>
+<div class="container my-5 p-5" style="border:1px solid black;">
+<h4 class="text-center"> New Book Register</h4>
+    <form class="col-md-4 offset-md-4">
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" class="form-control" id="name"  placeholder="Enter Name" name="name">
+        </div>
 
-<img src="/images/th%20(8).jpeg" width="360px">
+        <div class="form-group">
+            <label for="author">Author</label>
+            <input type="text" class="form-control" id="author"  placeholder="Enter author" name="author">
+        </div>
+
+
+        <div class="form-group">
+            <label for="price">Price</label>
+            <input type="text" class="form-control" id="price"  placeholder="Enter price" name="price">
+        </div>
+
+      <center>  <button type="submit" class="btn btn-primary">Submit</button></center>
+    </form>
+
 </div>
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
