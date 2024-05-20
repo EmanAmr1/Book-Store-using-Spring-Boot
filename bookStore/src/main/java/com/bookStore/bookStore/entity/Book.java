@@ -16,15 +16,26 @@ public class Book {
     private String author;
     private String price;
 
-    public Book(int id, String name, String author, String price) {
+    private String story;
+
+    public Book(int id, String name, String author, String price ,String story) {
         this.id = id;
         this.name = name;
         this.author = author;
         this.price = price;
+        this.story=story;
     }
 
     public Book() {
         super();
+    }
+
+    public String getStory() {
+        return story;
+    }
+
+    public void setStory(String story) {
+        this.story = story;
     }
 
     public int getId() {

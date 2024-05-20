@@ -1,15 +1,21 @@
 package com.bookStore.bookStore.controller;
 
 import com.bookStore.bookStore.entity.Book;
+import com.bookStore.bookStore.entity.BookDto;
 import com.bookStore.bookStore.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
+import java.util.Date;
 import java.util.List;
 
 
@@ -66,7 +72,74 @@ public class BookController {
         }
 
     }
+
+
+
+    //**************update book****************************
+    @GetMapping("/update/{id}")
+    public String showCreatePage(Model model, @PathVariable int id){
+        try{
+            Book b =bookService.getBookById(id);
+            model.addAttribute("book",b);
+
+            BookDto pd = new BookDto();  //take obj from bookDto to save the  edited book on it
+            pd.setName(b.getName());
+            pd.setAuthor(b.getAuthor());
+            pd.setStory(b.getStory());
+            pd.setPrice(b.getPrice());
+
+
+            model.addAttribute("bookDto" ,pd);
+
+
+        }
+        catch (Exception ex){
+            System.out.println("Exception: " + ex.getMessage());
+            return "redirect/bookList";
+        }
+        return "updateBook";
+    }
+
+
+
+@PostMapping("/update/{id}")
+    public String updateBook(@PathVariable int id ,Model model,@ModelAttribute BookDto bookDto){
+
+    try {
+        Book b = bookService.getBookById(id);
+        model.addAttribute("book", b);
+
+        b.setName(bookDto.getName());
+        b.setStory(bookDto.getStory());
+        b.setAuthor(bookDto.getAuthor());
+        b.setPrice(bookDto.getPrice());
+
+
+        bookService.save(b);
+
+    }catch (Exception ex){
+        System.out.println("Exception: "+ex.getMessage()); }
+    return "redirect:/getAllBooks";
 }
+
+
+//**************delete book****************************
+
+    @GetMapping("/deleteBook/{id}")
+    public  String  deleteBook(@PathVariable int id){
+
+        bookService.deleteBook(id);
+        return "redirect:/getAllBooks";
+    }
+
+}
+
+
+
+
+
+
+
 
 
 

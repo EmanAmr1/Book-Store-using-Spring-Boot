@@ -52,7 +52,10 @@
             <td th:text="${book.name}"></td>
             <td th:text="${book.author}"></td>
             <td th:text="${book.price}"></td>
-            <td><a th:href="@{/bookDetails/{id}(id=${book.id})}" class="btn btn-primary">View</a></td>
+            <td><a th:href="@{/bookDetails/{id}(id=${book.id})}" class="btn btn-primary">View Book Story</a>
+                <a th:href="@{/update/{id}(id=${book.id})}" class="btn btn-success">Update</a>
+                <a th:href="@{/deleteBook/{id}(id=${book.id})}" class="btn btn-danger">Delete</a>
+            </td>
         </tr>
         </tbody>
     </table>
