@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" xmlns:th="https://www.thymeleaf.com" >
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -12,7 +12,7 @@
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-dark">
-    <a class="navbar-brand text-white"  href="#">Book Store</a>
+    <a class="navbar-brand text-white" href="#">Book Store</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -23,25 +23,39 @@
                 <a class="nav-link text-white" href="/">Home <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-white" href="available_books">Available Books</a>
+                <a class="nav-link text-white" href="/getAllBooks">Available Books</a>
             </li>
-
             <li class="nav-item">
                 <a class="nav-link text-white" href="#">My Books</a>
             </li>
-
         </ul>
         <div>
-            <a class="nav-link text-white" href="book_register">New Book Register</a>
+            <a class="nav-link text-white" href="/book_register">New Book Register</a>
         </div>
     </div>
 </nav>
 
-<div class="container text-center my-5" >
-    <h1>WELCOME TO NEW BOOK STORE</h1>
-    <h6>Welcome to Book Store, your haven for literary adventure and discovery! Nestled in the heart of [City/Area Name], our bookstore is a treasure trove for book lovers of all ages. Whether you’re seeking the latest bestsellers, timeless classics, or unique finds from independent authors, our carefully curated selection promises to inspire and delight. Our cozy reading nooks invite you to lose yourself in a world of words, while our knowledgeable staff is always on hand to offer personalized recommendations. Join us for author events, book clubs, and special promotions that celebrate the joy of reading. At [Your Bookstore Name], every visit is a new chapter waiting to be written.</h6>
-
-    <img src="/images/th%20(8).jpeg" width="360px">
+<div class="container text-center my-5">
+    <table class="table table-striped table-hover">
+        <thead>
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Name</th>
+            <th scope="col">Author</th>
+            <th scope="col">Price</th>
+            <th scope="col">Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="book : ${books}">
+            <td th:text="${book.id}"></td>
+            <td th:text="${book.name}"></td>
+            <td th:text="${book.author}"></td>
+            <td th:text="${book.price}"></td>
+            <td><a th:href="@{/books/{id}(id=${book.id})}" class="btn btn-primary">View</a></td>
+        </tr>
+        </tbody>
+    </table>
 </div>
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
