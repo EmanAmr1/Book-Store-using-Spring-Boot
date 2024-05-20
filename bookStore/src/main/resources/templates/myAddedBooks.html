@@ -31,9 +31,8 @@
             <td th:text="${book.author}"></td>
             <td th:text="${book.price}"></td>
             <td><a th:href="@{/bookDetails/{id}(id=${book.id})}" class="btn btn-primary">View Book Story</a>
-           <a th:href="@{/bookDetails/{id}(id=${book.id})}" class="btn btn-danger">Delete from list</a>
+           <a th:href="@{/deleteBookFromList/{id}(id=${book.id})}" class="btn btn-danger">Delete from list</a>
            </td>
-
         </tr>
         </tbody>
     </table>

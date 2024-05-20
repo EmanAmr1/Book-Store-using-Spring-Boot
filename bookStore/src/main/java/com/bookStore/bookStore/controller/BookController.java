@@ -147,9 +147,13 @@ public class BookController {
         return "redirect:/AddToMyBooks" ;
     }
 
+//**************delete book from my book list ****************************
+@GetMapping("/deleteBookFromList/{id}")
+public  String  deleteBookFromList(@PathVariable int id){
 
-
-
+    myBookListService.deleteBook(id);
+    return "redirect:/AddToMyBooks";
+}
 
 }
 

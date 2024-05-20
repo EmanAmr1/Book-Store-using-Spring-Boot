@@ -22,4 +22,8 @@ public class MyBookListService {
 
     }
 
+
+    public  void deleteBook(int id){
+        mybookrepo.deleteById(id);
+    }
 }
